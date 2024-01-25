@@ -33,4 +33,11 @@ npm run dev
 
 ## Visual
 
+This is how it should look after Lab 37.
 ![landing page](/images/lab37.png)
+
+This is how it should look after Lab 38 with a table.
+![landing page](/images/lab38.png)
+
+This is how it should look after Lab 38 without a table.
+![landing page](/images/lab38_empty.png)

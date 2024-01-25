@@ -1,8 +1,8 @@
 import React from "react"
 
 
-export default function Form(props) {
-  const [stateForm, setFormState] = React.useState({
+export default function CreateForm(props) {
+  const [stateForm, setFormState] = React.useState(props.cookieStand || {
     location:"placeholder", 
     owner:null,
     description:"placeholder",
@@ -12,7 +12,7 @@ export default function Form(props) {
 
   function handlerOnSubmit(event){
     event.preventDefault();
-    console.log("handlerOnSubmit triggered");
+    // console.log("handlerOnSubmit triggered");
     props.dispatch({
       type:"updateCookieStand",
       payload: stateForm
@@ -28,9 +28,9 @@ export default function Form(props) {
   // console.log("Form", stateForm)
 
   return (
-    <form className="w-3/5 p-5 rounded-lg bg-customColor-200"
+    <form className="w-4/5 p-5 rounded-lg bg-customColor-400 border border-slate-700"
         onSubmit={handlerOnSubmit}>
-        <div className="flex flex-col flex-nowrap items-center">
+        <div className="flex flex-col flex-nowrap items-center font-bold uppercase">
 
           <div className="flex flex-row h-10 flex-nowrap w-11/12 justify-center items-center">
             <h2 className="text-2xl font-bold">Create Cookie Stand</h2>
@@ -39,13 +39,13 @@ export default function Form(props) {
 
           <div className="flex flex-row flex-nowrap items-center w-11/12 m-2">
             <label
-              className="block uppercase tracking-wide text-xs font-bold m-2"
-              for="location"
+              className="block uppercase tracking-wide font-bold m-2"
+              htmlFor="location"
             >
               Location
             </label>
             <input
-              className="w-full bg-gray-50 border"
+              className="w-full bg-customColor-100 border border border-slate-700"
               id="location"
               placeholder={stateForm.location}
               type="text"
@@ -54,16 +54,16 @@ export default function Form(props) {
             />
           </div>
 
-          <div className="flex flex-row flex-nowrap justify-between items-center w-11/12">
-            <div className="flex flex-col flex-nowrap w-1/5">
+          <div className="flex flex-row flex-nowrap justify-between items-center w-11/12 text-xs text-center">
+            <div className="h-20 flex flex-col flex-nowrap justify-center w-1/5 p-2 bg-customColor-200 rounded-md border border-slate-700">
               <label
-                className="block uppercase tracking-wide text-xs text-center font-bold mb-2"
-                for="minCustomersPerHour"
+                className="mb-2"
+                htmlFor="minCustomersPerHour"
               >
-                Minimum Customers per Hour
+                Min Customers per Hour
               </label>
               <input
-                className="w-full bg-gray-50 border"
+                className="w-full bg-customColor-100 border border-slate-700"
                 id="minCustomersPerHour"
                 type="number"
                 placeholder={stateForm.minCustPerHour}
@@ -74,15 +74,15 @@ export default function Form(props) {
               />
             </div>
 
-            <div className="flex flex-col flex-nowrap w-1/5">
+            <div className="h-20  flex flex-col flex-nowrap justify-center w-1/5 p-2 bg-customColor-200 rounded-md border border-slate-700">
               <label
-                className="block uppercase tracking-wide text-xs text-center font-bold mb-2"
-                for="maxCustomersPerHour"
+                className="mb-2"
+                htmlFor="maxCustomersPerHour"
               >
-                Maximum Customers per Hour
+                Max Customers per Hour
               </label>
               <input
-                className="w-full bg-gray-50 border"
+                className="w-full bg-customColor-100 border border-slate-700"
                 id="maxCustomersPerHour"
                 type="number"
                 placeholder={stateForm.maxCustPerHour}
@@ -93,15 +93,15 @@ export default function Form(props) {
               />
             </div>
 
-            <div className="flex flex-col flex-nowrap w-1/5">
+            <div className="h-20 flex flex-col flex-nowrap justify-center w-1/5 p-2 bg-customColor-200 rounded-md border border-slate-700">
               <label
-                className="block uppercase tracking-wide text-xs font-bold text-center mb-2"
-                for="averCookiesPerSale"
+                className="mb-2"
+                htmlFor="averCookiesPerSale"
               >
-                Average Cookies per Sale
+                Aver Cookies per Sale
               </label>
               <input
-                className="w-full bg-gray-50 border"
+                className="w-full bg-customColor-100 border border-slate-700"
                 id="averCookiesPerSale"
                 type="number"
                 placeholder={stateForm.averCookiesPerSale}
@@ -114,11 +114,11 @@ export default function Form(props) {
 
             <div className="flex flex-col flex-nowrap w-1/5 h-90">
               <button
-                  className="w-full h-20 bg-customColor-900 hover:bg-customColor-100 text-md"
+                  className="h-20 w-full rounded-md bg-customColor-500 hover:bg-customColor-100 border border-slate-700"
                   type="submit"
 
                 >
-                  Create
+                  CREATE
                 </button>
             </div>
 

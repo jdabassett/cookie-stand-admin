@@ -9,9 +9,11 @@ module.exports = {
     extend: {
       colors: {
         customColor: {
-          100: "#FFFFFE",
-          900: "#1FC55E",
-          200: "#86EEAB",
+          100: "#f7ede2",
+          200: "#f5cac3",
+          300: "#f6bd60",
+          400: "#f28482",
+          500: "#84a59d",
         },
       },
       screens: {
