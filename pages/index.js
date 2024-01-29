@@ -16,8 +16,8 @@ function reducer(stateCookieStandAdmin, action){
 
 export default function CookieStandAdmin() {
   let [stateCookieStandAdmin, dispatch] = React.useReducer(reducer,{
-    // cookieStandsList: locations || [],
-    cookieStandsList: [],
+    cookieStandsList: locations || [],
+    // cookieStandsList: [],
     cookieStand:{
       location:"placeholder", 
       owner:null,
