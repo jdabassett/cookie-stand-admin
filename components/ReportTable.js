@@ -1,4 +1,7 @@
+import { TrashIcon } from '@heroicons/react/24/solid';
+
 import { hours } from "@/data/data.js";
+
 
 export default function ReportTable(props) {
   let numLocations = props.cookieStandsList.length
@@ -7,8 +10,9 @@ export default function ReportTable(props) {
     let header = ["Locations", ...hours, "Totals"];
     let tableHeader = header.map((time, idx) => (
       <th
-        className="p-2" 
-        key={`${time}_head_${idx}`}>{time}</th>
+        className={idx===0?"w-1/5 text-left p-1 border border-slate-700":"w-1/20 text-right p-1 border border-slate-700"}
+        key={`${time}_head_${idx}`}
+        >{time}</th>
     ));
 
     // generate body of table
@@ -18,17 +22,19 @@ export default function ReportTable(props) {
           className={idx%2==1?"bg-customColor-400":"bg-customColor-200"} 
           key={`${item.location}_${idx}`}>
           {/* each location cell within table */}
-          <td className="border border-slate-700">{item.location}</td>
+          <td className="w-1/5 text-left border border-slate-700 pl-1 p-1" >{
+          
+          <div className="flex flex-row flex-nowrap justify-between align-center"><p>{item.location}</p><TrashIcon className="h-5 w-1/5"/></div>}</td>
 
           {/* each cell of numbers in the table */}
           {item.cookies_each_hour.map((number, index) => (
             <td 
-              className="border border-slate-700"
+              className="w-1/20 text-right p-1 border border-slate-700"
               key={`${item.location}_${number}_${index}`}>{number}</td>
           ))}
 
           <td
-            className="border border-slate-700">
+            className="w-1/20 text-right p-1 border border-slate-700">
             {item.cookies_each_hour.reduce((acc, item) => {
               return acc + item;
             }, 0)}
@@ -56,7 +62,7 @@ export default function ReportTable(props) {
 
     let tableFoot = footer.map((item, idx) => (
       <td 
-        className="p-2 border border-slate-700"
+        className={`${idx===0?"w-1/5 text-left ":"w-1/20 text-right "} p-2 border border-slate-700`}
         key={`${item}_foot_${idx}`}>{item}</td>
     ));
 
@@ -69,7 +75,7 @@ export default function ReportTable(props) {
           <tbody>{tableBody}</tbody>
           <tfoot>
             <tr
-              className={`p-2 font-bold ${(numLocations%2==1)?" bg-customColor-500":"bg-customColor-200"}`}>{tableFoot}</tr>
+              className={`p-1 font-bold ${(numLocations%2==1)?" bg-customColor-500":"bg-customColor-200"}`}>{tableFoot}</tr>
           </tfoot>
         </table>
     );
