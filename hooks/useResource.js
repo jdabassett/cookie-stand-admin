@@ -11,10 +11,11 @@ export default function useResource() {
 
   const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
 
+  // TODO: Attempt to use axios instead
   async function fetchResource(url) {
-    // if (!tokens) {
-    //   return;
-    // }
+    if (!tokens) {
+      return;
+    }
 
     try {
       const response = await fetch(apiUrl, config());
@@ -28,8 +29,10 @@ export default function useResource() {
 
   async function createResource(info) {
     try {
-      const options = config();
-      (options.method = 'POST'), (options.body = JSON.stringify(info));
+      let options = config();
+      options.method = 'POST'; 
+      options.body = JSON.stringify(info);
+      console.log("createResource", options);
       await fetch(apiUrl, options);
       mutate(); // mutate causes complete collection to be refetched
     } catch (err) {
@@ -58,8 +61,7 @@ export default function useResource() {
   function config() {
     return {
       headers: {
-        // Authorization: 'Bearer ' + tokens.access,
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2NjU3MTEwLCJpYXQiOjE3MDY1NzA3MTAsImp0aSI6ImZlNzIxMTUzZGQ4ODRiN2ZhZjNkZTUyZTllMTRiNTA5IiwidXNlcl9pZCI6MSwiZW1haWwiOiIiLCJ1c2VybmFtZSI6ImFkbWluIn0.lCcPRqbK5swm3Heydjh1_Fw17my-os8ok1Jl3mDlJZY',
+        Authorization: 'Bearer ' + tokens.access,
         'Content-Type': 'application/json',
       },
     };

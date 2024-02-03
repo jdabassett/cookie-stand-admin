@@ -5,18 +5,20 @@ import Head from "next/head";
 import Main from "@/components/Main";
 import Footer from "@/components/Footer";
 import { useContextAuth } from "@/contexts/auth";
+// import { useResources } from "@/hooks/useResource";
 
 import {hours, api_locations} from "@/data/data.js";
 
 function reducer(stateCookieStandAdmin, action){
   switch (action.type) {
-    case 'updateCookieStand': return {...stateIndex, cookieStand: action.payload};
+    // case 'createCookieStand': TODO trigger creation of cookiestand;
     case 'updateCookieStandsList': return {...stateIndex, cookieStandsList: action.payload};
   };
 };
 
 export default function CookieStandAdmin() {
-  let { tokens, user, loginFunction, logoutFunction } = useContextAuth()
+  let { tokens, user, loginFunction, logoutFunction } = useContextAuth();
+  // TODO: remove 
   let [stateCookieStandAdmin, dispatch] = React.useReducer(reducer,{
     cookieStandsList: api_locations || [],
     // cookieStandsList: [],
