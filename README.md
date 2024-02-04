@@ -30,7 +30,7 @@ npm run dev
 # go to http://localhost:3000 in your browser
 ```
 
-Clone the Django server repository to your local machine and perform the following commands to get it up and running. Update the .env with the appropriate values.
+Clone the Django server repository(https://github.com/jdabassett/drf-cookie-stand) to your local machine and perform the following commands to get it up and running. Update the .env with the appropriate values.
 
 ```bash
 # create new virtual environment
