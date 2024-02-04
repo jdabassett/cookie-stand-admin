@@ -1,13 +1,10 @@
-// import tools
 import React from "react";
 import jwt from "jsonwebtoken";
-import axios from "axios";
+// import axios from "axios";
 
-// global variables
 const tokenUrl = process.env.NEXT_PUBLIC_API_URL + "api/token/";
 const AuthContext = React.createContext();
 
-// create use context
 export function useContextAuth() {
   const auth = React.useContext(AuthContext);
   if (!auth) {
@@ -16,7 +13,6 @@ export function useContextAuth() {
   return auth;
 }
 
-// create context provider
 export function AuthProvider(props) {
   const [stateAuth, setStateAuth] = React.useState({
     tokens: null,
@@ -27,20 +23,14 @@ export function AuthProvider(props) {
   });
 
   async function loginFunction(username, password) {
-    // console.log("Login Function", username, password);
-
     const options = {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
     };
-
     const response = await fetch(tokenUrl, options);
-
     const data = await response.json();
-
     const decodedAccess = jwt.decode(data.access);
-
     const newState = {
       tokens: data,
       user: {
@@ -86,10 +76,6 @@ export function AuthProvider(props) {
     setStateAuth((prevState) => ({ ...prevState, tokens: null, user: null }));
   }
 
-  // console.log("AuthContext", stateAuth.user);
-  // console.log("AuthContext", tokenUrl);
-
-  // return provider
   return (
     <AuthContext.Provider value={stateAuth}>
       {props.children}

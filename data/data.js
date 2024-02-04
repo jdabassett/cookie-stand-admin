@@ -55,7 +55,7 @@ export const locations = [
 export const api_locations = [
   {
       "id": 7,
-      "location": "mona",
+      "location": "monas",
       "description": "s",
       "hourly_sales": [
           4,
