@@ -2,7 +2,7 @@ import React from "react";
 
 import Head from "next/head";
 import Header from "@/components/Header";
-import LoginForm from "@/components/LoginForm";
+import LoginRegister from "@/components/LoginRegister";
 import Main from "@/components/Main";
 import Footer from "@/components/Footer";
 import { useContextAuth } from "@/contexts/auth";
@@ -19,7 +19,7 @@ export default function CookieStandAdmin() {
       <Header />
       { user ?
       <Main/>:
-      <LoginForm />
+      <LoginRegister />
       }
       <Footer/>
     </div>
