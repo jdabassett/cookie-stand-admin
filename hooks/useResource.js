@@ -5,12 +5,12 @@ import { useContextAuth } from '@/contexts/auth';
 // import {api_locations} from "@/data/data";
 
 export default function useResource() {
-  const { tokens, logout  } = useContextAuth();
-  const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
+  const { accessToken, logout  } = useContextAuth();
+  const { data, error, mutate } = useSWR([apiUrl, accessToken], fetchResource);
 
   // TODO: Attempt to use axios instead
   async function fetchResource(url) {
-    if (!tokens) {
+    if (!accessToken) {
       return;
     }
     try {
@@ -62,7 +62,7 @@ export default function useResource() {
   function config() {
     return {
       headers: {
-        Authorization: 'Bearer ' + tokens.access,
+        Authorization: 'Bearer ' + accessToken,
         'Content-Type': 'application/json',
       },
     };
@@ -82,7 +82,7 @@ export default function useResource() {
     resources: data,
     // resources: api_locations,
     error,
-    loading: tokens && !error && !data,
+    loading: accessToken && !error && !data,
     createResource,
     deleteResource,
     updateResource,
